@@ -1,12 +1,17 @@
 import joi from 'joi';
 import React from 'react';
-import cloneDeep from '@educandu/educandu/utils/clone-deep.js';
 import IconComponent from './progression-models-icon.js';
+import cloneDeep from '@educandu/educandu/utils/clone-deep.js';
 import { PLUGIN_GROUP } from '@educandu/educandu/domain/constants.js';
+import { couldAccessUrlFromRoom } from '@educandu/educandu/utils/source-utils.js';
+import GithubFlavoredMarkdown from '@educandu/educandu/common/github-flavored-markdown.js';
 
 class ProgressionModelsInfo {
 
+  static dependencies = [GithubFlavoredMarkdown];
+
   static typeName = 'musikisum/educandu-plugin-progression-models';
+
   constructor(gfm) {
     this.gfm = gfm;
   }
@@ -83,12 +88,27 @@ class ProgressionModelsInfo {
     return cloneDeep(content);
   }
 
-  redactContent(content) {
-    return cloneDeep(content);
+  redactContent(content, targetRoomId) {
+    const redactedContent = cloneDeep(content);
+    redactedContent.modelTemplates.forEach(obj => {
+      obj.customDescription = this.gfm.redactCdnResources(
+        obj.customDescription,
+        url => couldAccessUrlFromRoom(url, targetRoomId) ? url : ''
+      );
+    });
+    return redactedContent;
   }
 
-  getCdnResources() {
-    return [];
+  getCdnResources(content) {
+    const clonedContent = cloneDeep(content);
+    const templates = clonedContent.modelTemplates;
+    const linkArr = [];
+    for (let index = 0; index < templates.length; index += 1) {
+      const des = templates[index];
+      const tempArrr = this.gfm.extractCdnResources(des.customDescription);
+      linkArr.push(...tempArrr);
+    }
+    return linkArr;
   }
 }
 
