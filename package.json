@@ -1,0 +1,58 @@
+{
+  "name": "@musikisum/educandu-plugin-progression-models",
+  "version": "2.1.1",
+  "description": "A plugin for progression models in music",
+  "type": "module",
+  "exports": {
+    ".": "./dist/index.js",
+    "./*": "./dist/*"
+  },
+  "engines": {
+    "node": "^20.0.0"
+  },
+  "keywords": [
+    "educandu"
+  ],
+  "license": "MIT",
+  "author": "Educandu Team <team@educandu.dev>, Ulrich Kaiser <kontakt@kaiser-ulrich.de>",
+  "homepage": "https://kaiser-ulrich.de",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/musikisum/progression-models-plugin"
+  },
+  "dependencies": {
+    "abc-notation-transposition": "^1.0.5"
+  },
+  "devDependencies": {
+    "@ant-design/icons": "5.5.1",
+    "@educandu/dev-tools": "^15.1.0",
+    "@educandu/educandu": "^4.0.0",
+    "@educandu/node-jsx-loader": "^4.0.0",
+    "@educandu/rooms-auth-lambda": "^9.0.0",
+    "@vitest/coverage-v8": "^1.0.2",
+    "antd": "5.21.2",
+    "del": "^7.1.0",
+    "eslint": "^8.55.0",
+    "eslint-plugin-import": "^2.29.0",
+    "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "glob": "^11.0.3",
+    "gulp": "^4.0.2",
+    "mkdirp": "^3.0.1",
+    "parseboolean": "^1.0.0",
+    "vitest": "^1.0.2"
+  },
+  "peerDependencies": {
+    "@ant-design/icons": ">=5.5.1",
+    "@educandu/educandu": ">=4.0.0",
+    "antd": ">=5.21.2",
+    "joi": ">=17.11.0",
+    "react": ">=18.2.0",
+    "react-dom": ">=18.2.0",
+    "react-i18next": ">=13.5.0"
+  },
+  "resolutions": {
+    "**/gl": "8.0.2",
+    "**/rc-resize-observer": "1.4.0"
+  }
+}
